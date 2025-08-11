@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE = "seuusuario/meu-app"
+    IMAGE = "painspablo/meu-app" 
     DOCKER_CREDS = "docker-hub-creds"
   }
 
@@ -25,7 +25,6 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDS}", usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
           sh "echo $DH_PASS | docker login -u $DH_USER --password-stdin"
           sh "docker push ${IMAGE}:latest"
-          sh "docker logout"
         }
       }
     }
