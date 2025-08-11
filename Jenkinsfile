@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE = "painspablo/meu-app" 
+    IMAGE = "painspablo/meu-app"
     DOCKER_CREDS = "docker-hub-creds"
   }
 
@@ -26,6 +26,12 @@ pipeline {
           sh "echo $DH_PASS | docker login -u $DH_USER --password-stdin"
           sh "docker push ${IMAGE}:latest"
         }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'docker-compose down'
+        sh 'docker-compose up -d'
       }
     }
   }
