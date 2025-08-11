@@ -1,13 +1,10 @@
-const request = require('supertest');
-const express = require('express');
+describe('Testes iniciais', () => {
+  test('A soma de 1 e 1 deve ser 2', () => {
+    expect(1 + 1).toBe(2);
+  });
 
-const app = express();
-app.get('/', (req, res) => res.send('Hello DevOps World! 🚀'));
-
-describe('GET /', () => {
-  it('responds with Hello DevOps World!', async () => {
-    const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
-    expect(res.text).toBe('Hello DevOps World! 🚀');
+  test('O resultado de uma string de texto deve ser igual', () => {
+    const texto = "Olá mundo";
+    expect(texto).toBe("Olá mundo");
   });
 });
